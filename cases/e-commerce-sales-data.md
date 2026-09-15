@@ -1,8 +1,8 @@
 ---
 case_id: e-commerce-sales-data
 title: E commerce sales data
-created: 2026-09-15T08:07:24.129091+00:00
-updated: 2026-09-15T08:07:24.129091+00:00
+created: 2026-09-15T08:09:44.683540+00:00
+updated: 2026-09-15T08:09:44.683540+00:00
 domain: Retail E-commerce
 status: reviewed
 columns:
