@@ -4,6 +4,9 @@ Towards Insights is a local browser app that turns dataset columns and optional 
 
 See [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) for the full product workflow, architecture, data contract, case format, configuration, privacy expectations, and future extensions.
 
+<img width="1920" height="1080" alt="Screenshot 2026-09-15 at 1 33 54 PM" src="https://github.com/user-attachments/assets/6bf409a3-fc40-4ac9-84bb-aa0df496dded" />
+
+
 ## Run locally
 
 ```bash
