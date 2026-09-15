@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Insights</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero"><p class="eyebrow">DATA TO DECISIONS</p><h1>Towards Insights</h1><p class="intro">Turn a dataset schema into the questions your leadership team should ask next.</p></header>
+    <section class="workspace">
+      <form id="analysis-form" class="panel input-panel">
+        <label>Case title<input id="case-title" name="case_title" placeholder="Customer churn review" required></label>
+        <label>Column names <span class="hint">one per line or comma-separated</span><textarea id="columns" name="columns" placeholder="customer_id\nsignup_date\nplan\nlast_active_at\nmonthly_revenue" required></textarea></label>
+        <label>Optional sample data <span class="hint">remove confidential values first</span><textarea id="sample-data" name="sample_data" class="sample" placeholder="Paste a few representative rows, CSV or JSON..."></textarea></label>
+        <button type="submit" id="analyze-button">Analyze dataset <span>→</span></button>
+        <p id="status" class="status" role="status"></p>
+      </form>
+      <section id="result" class="panel result-panel empty"><div class="empty-state"><span class="empty-mark">✦</span><h2>Your analysis will appear here</h2><p>Start with the shape of the data. The agent will map the domain, relationships, and decision questions.</p></div></section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
