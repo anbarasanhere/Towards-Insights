@@ -6,6 +6,8 @@ See [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) for the full product wo
 
 <img width="1920" height="1080" alt="Screenshot 2026-09-15 at 1 33 54 PM" src="https://github.com/user-attachments/assets/6bf409a3-fc40-4ac9-84bb-aa0df496dded" />
 
+<img width="1428" height="667" alt="Screenshot 2026-09-15 at 1 35 54 PM" src="https://github.com/user-attachments/assets/f11055c8-0911-4eb9-bc97-85890428a581" />
+
 
 ## Run locally
 
