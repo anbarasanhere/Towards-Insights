@@ -22,7 +22,10 @@ def case_path(repo_path: str | Path, title: str) -> Path:
 
 
 def render_case(
-    request: AnalysisRequest, result: AnalysisResult, created_at: str | None = None
+    request: AnalysisRequest,
+    result: AnalysisResult,
+    created_at: str | None = None,
+    conversation: list[dict[str, str]] | None = None,
 ) -> str:
     now = datetime.now(timezone.utc).isoformat()
     created = created_at or now
@@ -41,6 +44,41 @@ def render_case(
         f"# {request.case_title}",
         "",
         f"**Business domain:** {result.domain}",
+        "",
+        "## Data Overview",
+        "",
+        *[
+            f"- {item}"
+            for item in (
+                result.overview.briefing_points
+                or [result.overview.profile or result.overview.summary]
+            )
+        ],
+        "",
+        f"**Likely grain:** {result.overview.grain}",
+        "",
+        f"**Likely grain:** {result.overview.grain}",
+        "",
+        "### Field Roles",
+        *[f"- {item}" for item in result.overview.field_roles],
+        "",
+        "### Quality Checks",
+        *[f"- {item}" for item in result.overview.quality_notes],
+        "",
+        "### Measures",
+        *[f"- {item}" for item in result.overview.measures],
+        "",
+        "### Dimensions",
+        *[f"- {item}" for item in result.overview.dimensions],
+        "",
+        "### Time Fields",
+        *[f"- {item}" for item in result.overview.time_fields],
+        "",
+        "### Analytical Opportunities",
+        *[f"- {item}" for item in result.overview.analytical_opportunities],
+        "",
+        "### Limitations",
+        *[f"- {item}" for item in result.overview.limitations],
         "",
         "## Core Entities",
         *[f"- {entity}" for entity in result.entities],
@@ -67,4 +105,9 @@ def render_case(
                     f"**WHAT to visualize:** {item.what}",
                 ]
             )
+    if conversation:
+        lines.extend(["", "## Follow-up Discussion"])
+        for item in conversation:
+            speaker = "You" if item.get("role") == "user" else "Towards Insights"
+            lines.extend(["", f"### {speaker}", "", item.get("content", "")])
     return "\n".join(lines) + "\n"

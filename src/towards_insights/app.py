@@ -8,7 +8,7 @@ from pathlib import Path
 from .git_publisher import GitPublisher
 from .markdown import render_case
 from .models import AnalysisRequest, AnalysisResult
-from .providers import analyze
+from .providers import analyze, answer_question
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = ROOT / "web"
@@ -51,13 +51,25 @@ class Handler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", "0"))
         try:
             data = json.loads(self.rfile.read(length))
-            request = AnalysisRequest(**data)
+            request = AnalysisRequest(
+                case_title=data.get("case_title", ""),
+                columns=data.get("columns", []),
+                sample_data=data.get("sample_data", ""),
+            )
             request.validate()
             if self.path == "/api/analyze":
                 self._send(200, analyze(request).to_dict())
+            elif self.path == "/api/question":
+                result = AnalysisResult.from_dict(data["analysis"])
+                answer = answer_question(
+                    request, result, data.get("question", ""), data.get("history", [])
+                )
+                self._send(200, {"answer": answer})
             elif self.path == "/api/publish":
                 result = AnalysisResult.from_dict(data["analysis"])
-                content = render_case(request, result)
+                content = render_case(
+                    request, result, conversation=data.get("history", [])
+                )
                 config = {
                     "repo_path": os.getenv("REPOSITORY_PATH", str(ROOT)),
                     "remote": os.getenv("GIT_REMOTE", "origin"),

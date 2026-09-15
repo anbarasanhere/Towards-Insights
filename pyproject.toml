@@ -3,6 +3,7 @@ name = "towards-insights"
 version = "0.1.0"
 description = "A local data-to-business-insights case tracker"
 requires-python = ">=3.11"
+dependencies = ["certifi>=2023.7.22"]
 
 [project.scripts]
 towards-insights = "towards_insights.app:main"

@@ -4,16 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Towards Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <main class="shell">
-    <header class="hero"><p class="eyebrow">DATA TO DECISIONS</p><h1>Towards Insights</h1><p class="intro">Turn a dataset schema into the questions your leadership team should ask next.</p></header>
+    <header class="app-bar"><div class="brand"><span class="brand-mark">TI</span><strong>Towards Insights</strong><span class="case-chip" id="case-chip">Untitled Case</span></div><div class="connection-meta"><span><i class="status-dot"></i> localhost:8765</span><span>branch <code>origin/main</code></span></div></header>
+    <header class="hero"><div><p class="eyebrow">DATA INTELLIGENCE ASSISTANT</p><h1>Understand your data.<br><em>Decide what to do next.</em></h1></div><p class="intro">Paste a compact reference dataset and turn its shape into leadership-ready questions, metrics, and next steps.</p></header>
     <section class="workspace">
       <form id="analysis-form" class="panel input-panel">
         <label>Case title<input id="case-title" name="case_title" placeholder="Customer churn review" required></label>
-        <label>Column names <span class="hint">one per line or comma-separated</span><textarea id="columns" name="columns" placeholder="customer_id\nsignup_date\nplan\nlast_active_at\nmonthly_revenue" required></textarea></label>
-        <label>Optional sample data <span class="hint">remove confidential values first</span><textarea id="sample-data" name="sample_data" class="sample" placeholder="Paste a few representative rows, CSV or JSON..."></textarea></label>
+        <label>Columns and sample rows <span class="hint">first row = column names; following rows = reference records</span><textarea id="reference-data" class="reference-data" placeholder="customer_id\tsignup_date\tplan\tmonthly_revenue\nC001\t2026-01-12\tPro\t99\nC002\t2026-02-03\tBasic\t29" required></textarea></label>
+        <p class="paste-note">Paste directly from Excel or Google Sheets. Tab-separated, comma-separated, and one-column-per-line formats are supported.</p>
         <button type="submit" id="analyze-button">Analyze dataset <span>→</span></button>
         <p id="status" class="status" role="status"></p>
       </form>
